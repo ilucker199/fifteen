@@ -1,0 +1,1 @@
+[Алгоритм A* и игра "Пятнашки"](http://www.dokwork.ru/2012/03/blog-post.html)

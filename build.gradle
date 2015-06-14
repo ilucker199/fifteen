@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.6
+
+targetCompatibility = 1.6
+
+version = 1.4
+
+jar {
+    manifest {
+        manifest.attributes provider: 'gradle'
+
+        attributes("Implementation-Title": "Fifteen Puzzle",
+                "Implementation-Version": version,
+                "Main-Class": "ru.dokwork.fifteen.Fifteen"
+        )
+    }
+}

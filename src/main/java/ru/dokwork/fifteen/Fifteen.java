@@ -165,14 +165,12 @@ public class Fifteen {
 			}
 			if (args[i].equals("-s")) {
 				isReadInStream = false;
-				sideSize = Integer.parseInt(args[i]);
-				i++;
+				sideSize = Integer.parseInt(args[++i]);
 				continue;
 			}
 			if (args[i].equals("-c")) {
 				isReadInStream = false;
-				stepCount = Integer.parseInt(args[i]);
-				i++;
+				stepCount = Integer.parseInt(args[++i]);
 				continue;
 			}
 			throw new IllegalArgumentException("Unknown argument: " + args[i]);

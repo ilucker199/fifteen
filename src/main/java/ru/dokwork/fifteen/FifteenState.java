@@ -11,10 +11,10 @@ public class FifteenState extends State {
 
 	public static byte[] parseField(String str) {
 		int i = 0;
-		String[] lines = str.replaceAll("\\n", ";").replaceAll("\\s", ":").split(";");
+		String[] lines = str.split("\n");
 		byte[] res = new byte[lines.length * lines.length];
 		for (String line : lines) {
-			String[] vals = line.trim().split(":");
+			String[] vals = line.trim().replaceAll("\\s+", ":").split(":");
 			for (String v : vals) {
 				res[i] = Byte.parseByte(v.trim());
 				i++;
@@ -28,22 +28,19 @@ public class FifteenState extends State {
 	 * 
 	 * @param field
 	 *            состояние игрового поля.
-	 * @param sideSize
-	 *            размер стороны игрового поля.
 	 * @return true - если можно привести к терминальному.
 	 * 
-	 * @see http://ru.wikipedia.org/wiki/Пятнашки
+	 * @see <a href="https://ru.wikipedia.org/wiki/%D0%98%D0%B3%D1%80%D0%B0_%D0%B2_15">Wikipedia: Игра_в_15</a>
 	 */
-	public static boolean checkState(byte[] field, int sideSize) {
+	public static boolean checkState(byte[] field) {
 		int N = 0;
 		int e = 0;
+		int sideSize = 4;
 		for (int i = 0; i < field.length; i++) {
 			/* Определяется номер ряда пустой клетки (считая с 1). */
 			if (field[i] == 0) {
 				e = i / sideSize + 1;
 			}
-			if (i == 0)
-				continue;
 			/* Производится подсчет количества клеток меньших текущей */
 			for (int j = i + 1; j < field.length; j++) {
 				if (field[j] < field[i]) {

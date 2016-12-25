@@ -15,14 +15,14 @@ public class Fifteen {
 	public static void main(String[] args) {
 		parseArgs(args);
 
-		if (isReadInStream) {
+		if (isReadFromStream) {
 			try {
 				startField = readStartState();
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(1);
 			}
-			if (!FifteenState.checkState(startField, sideSize)) {
+			if (sideSize == 4 && !FifteenState.checkState(startField)) {
 				System.out
 						.println("\nДанное состояние нельзя привести к терминальному.\n"
 								+ "См. http://ru.wikipedia.org/wiki/Пятнашки\n");
@@ -164,12 +164,12 @@ public class Fifteen {
 				continue;
 			}
 			if (args[i].equals("-s")) {
-				isReadInStream = false;
+				isReadFromStream = false;
 				sideSize = Integer.parseInt(args[++i]);
 				continue;
 			}
 			if (args[i].equals("-c")) {
-				isReadInStream = false;
+				isReadFromStream = false;
 				stepCount = Integer.parseInt(args[++i]);
 				continue;
 			}
@@ -179,7 +179,7 @@ public class Fifteen {
 
 	private static void showHelp() throws IOException {
 		InputStreamReader strm = new InputStreamReader(
-				Fifteen.class.getResourceAsStream("help.ru"), "UTF-8");
+				Fifteen.class.getResourceAsStream("/help.ru"), "UTF-8");
 		BufferedReader reader = new BufferedReader(strm);
 
 		PrintStream out = new PrintStream(System.out, true);
@@ -200,7 +200,7 @@ public class Fifteen {
 
 	private static int sideSize = 4;
 
-	private static boolean isReadInStream = true;
+	private static boolean isReadFromStream = true;
 
 	private static boolean isShowStatistic = false;
 }

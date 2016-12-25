@@ -11,10 +11,10 @@ public class FifteenState extends State {
 
 	public static byte[] parseField(String str) {
 		int i = 0;
-		String[] lines = str.split("\n");
+		String[] lines = str.replaceAll("\\n", ";").replaceAll("\\s", ":").split(";");
 		byte[] res = new byte[lines.length * lines.length];
 		for (String line : lines) {
-			String[] vals = line.trim().split("\t");
+			String[] vals = line.trim().split(":");
 			for (String v : vals) {
 				res[i] = Byte.parseByte(v.trim());
 				i++;

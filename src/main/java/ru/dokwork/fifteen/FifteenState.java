@@ -41,6 +41,8 @@ public class FifteenState extends State {
 			if (field[i] == 0) {
 				e = i / sideSize + 1;
 			}
+			if (i == 0)
+				continue;
 			/* Производится подсчет количества клеток меньших текущей */
 			for (int j = i + 1; j < field.length; j++) {
 				if (field[j] < field[i]) {
